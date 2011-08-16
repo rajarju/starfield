@@ -51,15 +51,15 @@ and open the template in the editor.
         return document.getElementsByTagName(tag);
       }
       //Get window Size and Space Depth
-      function $screen(){
+      function $pScreen(){
                 
-        screen =  {
+        pScreen =  {
           h : document.documentElement.clientHeight, 
           w: document.documentElement.clientWidth                    
         };
                 
                 
-        return screen;
+        return pScreen;
       }
                     
             
@@ -76,7 +76,7 @@ and open the template in the editor.
       var hyperDrive = false;
       var x = 0, y = 0, z = 0;
       //Screen Size
-      var screen;
+      var pScreen;
             
       var canvas = {
         w : 0,
@@ -107,14 +107,14 @@ and open the template in the editor.
             
       function init(){
                 
-        var screen = $screen();
+        var pScreen = $pScreen();
                 
         // Create Stars
-        mouse_x = screen.w / 2;
-        mouse_y = screen.h / 2;
-        x = Math.round(screen.w / 2);
-        y = Math.round(screen.h / 2);
-        z =( screen.w + screen.h ) / 2;
+        mouse_x = pScreen.w / 2;
+        mouse_y = pScreen.h / 2;
+        x = Math.round( pScreen.w / 2);
+        y = Math.round( pScreen.h / 2);
+        z =( pScreen.w + pScreen.h ) / 2;
                 
         for(var i = 0;i < numberOfStarts;i++)
         {
@@ -127,27 +127,27 @@ and open the template in the editor.
           //cursor_y =y;
                     
           //                    stars.push(new star(
-          //                    Math.random() * screen.w * 2 - x * 2,
-          //                    Math.random() * screen.h * 2 - y * 2,
+          //                    Math.random() * pScreen.w * 2 - x * 2,
+          //                    Math.random() * pScreen.h * 2 - y * 2,
           //                    Math.round(Math.random() * z),
           //                    0,
           //                    0
           //                ));
           stars.push(new star(
-          Math.random() * screen.w * 2 - x * 2,
-          Math.random() * screen.h * 2 - y * 2,
+          Math.random() * pScreen.w * 2 - x * 2,
+          Math.random() * pScreen.h * 2 - y * 2,
           Math.round(Math.random() * z),
           0,
           0
         ));
-          //console.log(screen)
+          //console.log( pScreen)
 
         }
                 
         //set the stage
         var playground = $getE("playground");
-        playground.width = screen.w;
-        playground.height = screen.h;
+        playground.width = pScreen.w;
+        playground.height = pScreen.h;
         playground.style.background = '#000';
         canvas.context = playground.getContext('2d');
                 
@@ -163,7 +163,7 @@ and open the template in the editor.
             
       var gameLoop = function(){
                 
-        //canvas.context.fillRect(0, 0, screen.w, screen.h);
+        //canvas.context.fillRect(0, 0, pScreen.w, pScreen.h);
         
         canvas.context.drawImage(bg, 0, 0);
                 
@@ -182,22 +182,22 @@ and open the template in the editor.
           //stars[i].x += mouse_x >> 4; 
                     
           if(stars[i].x > x << 1) { 
-            stars[i].x -= screen.w << 1; 
+            stars[i].x -= pScreen.w << 1; 
             starPassed = false; 
           } 
           if(stars[i].x < -x << 1) { 
-            stars[i].x += screen.w << 1; 
+            stars[i].x += pScreen.w << 1; 
             starPassed = false; 
           }
                     
           //stars[i].y += mouse_y >> 4; 
                     
           if(stars[i].y > y << 1) {
-            stars[i].y -= screen.h << 1; 
+            stars[i].y -= pScreen.h << 1; 
             starPassed = false; 
           } 
           if(stars[i].y < -y << 1) { 
-            stars[i].y +=screen.h <<1; 
+            stars[i].y +=  pScreen.h <<1; 
             starPassed = false;
           }
                     
@@ -219,7 +219,7 @@ and open the template in the editor.
           stars[i].star_x_save = star_x_save;
           stars[i].star_y_save = star_y_save;
                     
-          if(star_x_save > 0 && star_x_save < screen.w && star_y_save > 0 && star_y_save < screen.h && starPassed){
+          if(star_x_save > 0 && star_x_save < pScreen.w && star_y_save > 0 && star_y_save < pScreen.h && starPassed){
             stars[i].draw()
           }
         }
